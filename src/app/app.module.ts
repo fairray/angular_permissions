@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -25,7 +26,7 @@ import { AuthModule } from './auth/auth.module';
     HomeComponent,
     ProfileComponent,
     DashboardComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +39,7 @@ import { AuthModule } from './auth/auth.module';
         name: 'NgRx Store DevTools',
       })
       : [],
+    NgxPermissionsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
