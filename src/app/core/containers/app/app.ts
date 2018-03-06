@@ -2,26 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { NgxPermissionsService } from 'ngx-permissions';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'app';
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.makeReq().subscribe( (perm) => {
+      console.log('perm', perm);
       this.permissionsService.loadPermissions(perm, (permissionName, permissionStore) => {
         return !!permissionStore[permissionName];
-      })
-    })
+      });
+    });
   }
-  constructor(private permissionsService: NgxPermissionsService){
+  constructor(private permissionsService: NgxPermissionsService, private http: HttpClient) {
 
   }
-  makeReq(): Observable<Array<string>>{
+  makeReq(): Observable<any> {
     //
-    return of(['CanEdit', 'test']);
+    return this.http.get('/api/permissions');
   }
 }

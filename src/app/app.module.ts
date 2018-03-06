@@ -5,9 +5,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AuthModule } from './auth/auth.module';
 
 import { environment } from '../environments/environment';
-import { AppComponent } from './app.component';
+import { AppComponent } from './core/containers/app';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -17,12 +20,11 @@ import { reducers, metaReducers } from './reducers';
 
 
 import { routes } from './routes';
-import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core/core.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
     HomeComponent,
     ProfileComponent,
     DashboardComponent,
@@ -30,6 +32,7 @@ import { AuthModule } from './auth/auth.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     AuthModule.forRoot(),
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -40,6 +43,8 @@ import { AuthModule } from './auth/auth.module';
       })
       : [],
     NgxPermissionsModule.forRoot()
+    ,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
