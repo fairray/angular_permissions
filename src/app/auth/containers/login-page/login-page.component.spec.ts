@@ -1,25 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { StoreModule, Store, combineReducers } from '@ngrx/store';
 import { LoginPageComponent } from './login-page.component';
+import * as fromAuth from '../../reducers';
 
-describe('LoginPageComponent', () => {
-  let component: LoginPageComponent;
+describe('Login Page', () => {
   let fixture: ComponentFixture<LoginPageComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ LoginPageComponent ]
-    })
-    .compileComponents();
-  }));
+  let store: Store<fromAuth.State>;
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        StoreModule.forRoot({
+          auth: combineReducers(fromAuth.reducers),
+        }),
+      ],
+      declarations: [LoginPageComponent],
+    });
+
     fixture = TestBed.createComponent(LoginPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    store = TestBed.get(Store);
+
+    spyOn(store, 'dispatch').and.callThrough();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    fixture.detectChanges();
+    expect(fixture).toBeTruthy();
   });
 });
