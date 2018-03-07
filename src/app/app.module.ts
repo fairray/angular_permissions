@@ -14,7 +14,6 @@ import { AppComponent } from './core/containers/app';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 import { reducers, metaReducers } from './reducers';
 
@@ -28,7 +27,6 @@ import { CoreModule } from './core/core.module';
     HomeComponent,
     ProfileComponent,
     DashboardComponent,
-    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

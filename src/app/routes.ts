@@ -3,7 +3,7 @@ import { AuthGuard } from './auth/services/auth-guard.service';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundComponent } from './core/containers/not-found';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
